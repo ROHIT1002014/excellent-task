@@ -11,11 +11,16 @@
                 Some quick example text to build on the card title
                 and make up the bulk of the card's content.
               </p>
-              <a class="btn btn-primary">
+              <div class="d-flex">
+              <a class="btn mr-auto  btn-primary">
                 <router-link :to="{ name: 'About', params: { id: user.id }}">
                   <span class="text-white">More Info</span>
                 </router-link>
               </a>
+              <a class="btn btn-danger" @click="deleteCurrentPage(user.id)">
+                <span class="text-white">Delete</span>
+              </a>
+              </div>
             </div>
           </div>
         </div>
@@ -91,10 +96,10 @@ export default {
     LastPage(){
       let a = Math.floor(this.totalData / 9);
       this.$store.dispatch('fetchUser', {id: a});
-    }
-  },
-  created(){
-    this.$store.dispatch('fetchDetails');
+    },
+    deleteCurrentPage(page){
+      this.$store.dispatch('deleteInfo', {id: page});
+    },
   },
 }
 </script>

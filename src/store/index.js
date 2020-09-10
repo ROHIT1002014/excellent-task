@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import axios from 'axios';
+
 Vue.use(Vuex)
+
 export default new Vuex.Store({
   state: {
     userDetails: [],
@@ -44,26 +45,29 @@ export default new Vuex.Store({
   },
 
   actions: {
-    fetchDetails({ commit }) {
-      axios.get('https://jsonplaceholder.typicode.com/photos').then(users => {
-        commit("SET_TOTAL_DATA", users.data.length)
-        commit("SET_ALL_DETAILS", users.data)
-        commit("SET_ALL_USERS", this.state.details.slice(0, 9))
-
-      })
+    fetchData({ commit }, data) {
+      commit('SET_ALL_DETAILS', data.data);
+      commit("SET_TOTAL_DATA", data.data.length)
+      commit("SET_ALL_USERS", this.state.details.slice(0,9))
     },
-    fetchUser({ commit },pageNumber) {
+    fetchDetails({ commit }) {
+      commit("SET_ALL_USERS", this.state.details)
+    },
+    fetchUser({ commit }, pageNumber) {
           let start = pageNumber.id*9;
           let end = start+9;
           commit("SET_ALL_USERS", this.state.details.slice(start, end))
     },
     fetchCurrentDetail({ commit }, id) {
-      console.log(this.state.details.find(element => {
-        return element.id === id;
-      }))
       commit("SET_CURRENT_DETAIL", this.state.details.find(element => {
         return element.id === id;
       }))
+    },
+    deleteInfo({commit}, id) {
+      let newData = this.state.userDetails.filter(element => {
+        return element.id !== id.id;
+      })
+      commit("SET_ALL_USERS", newData)
     }
   },
   modules: {
