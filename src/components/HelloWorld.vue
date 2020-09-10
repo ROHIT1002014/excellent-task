@@ -6,9 +6,16 @@
           <div class="card mx-auto" style="width: 18rem; height: 30rem !important">
             <img class="card-img-top img-fluid" :src="user.thumbnailUrl" alt="Card image cap">
             <div class="card-body">
-              <h5 class="card-title">{{ user.id }}</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">{{ user.title }}</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title
+                and make up the bulk of the card's content.
+              </p>
+              <a class="btn btn-primary">
+                <router-link :to="{ name: 'About', params: { id: user.id }}">
+                  <span class="text-white">More Info</span>
+                </router-link>
+              </a>
             </div>
           </div>
         </div>

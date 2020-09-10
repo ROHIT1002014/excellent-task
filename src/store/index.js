@@ -6,6 +6,7 @@ export default new Vuex.Store({
   state: {
     userDetails: [],
     details: [],
+    currentDetail: 0,
     totalData: 0
   },
 
@@ -21,6 +22,9 @@ export default new Vuex.Store({
     },
     totalData(state) {
       return state.totalData
+    },
+    currentDetail(state) {
+      return state.currentDetail
     }
   },
 
@@ -33,6 +37,9 @@ export default new Vuex.Store({
     },
     SET_TOTAL_DATA(state, data) {
       state.totalData = data
+    },
+    SET_CURRENT_DETAIL(state, data) {
+      state.currentDetail = data
     }
   },
 
@@ -48,9 +55,16 @@ export default new Vuex.Store({
     fetchUser({ commit },pageNumber) {
           let start = pageNumber.id*9;
           let end = start+9;
-          console.log(this.state.details)
           commit("SET_ALL_USERS", this.state.details.slice(start, end))
     },
+    fetchCurrentDetail({ commit }, id) {
+      console.log(this.state.details.find(element => {
+        return element.id === id;
+      }))
+      commit("SET_CURRENT_DETAIL", this.state.details.find(element => {
+        return element.id === id;
+      }))
+    }
   },
   modules: {
   }
