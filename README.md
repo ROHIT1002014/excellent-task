@@ -1,5 +1,9 @@
 # playtonia-task
 
+
+### Customize configuration
+For Live Demo [Click Here](https://rohit1002014.github.io/excellent-task/).
+
 ## Project setup
 ```
 npm install
@@ -19,6 +23,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
